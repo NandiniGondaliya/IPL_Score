@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Score</title>
+    <link rel="stylesheet" href="cssfile.css">
+    <link rel="shortcut icon" href="ipl.jpg" type="image/x-icon">
+    <script>
+        function CheckScore()
+        {
+            var team1=document.getElementById('teamname1').value;
+            var team2=document.getElementById('teamname2').value;
+            var score1=document.getElementById('teamscore1').value;
+            var score2=document.getElementById('teamscore2').value;
+            
+            var scorelist1=score1.split('/');
+            var scorelist2=score2.split('/');
+
+            if(!team1||!team2||!score1||!score2)
+            {
+                document.getElementById('texthere').innerHTML=`missing fields`;
+            }
+            else if(team1===team2)
+            {
+                document.getElementById('texthere').innerHTML='Teamname are same';            
+            }
+            else if(scorelist1[1]>10 || scorelist2[1]>10)
+            {
+                document.getElementById('texthere').innerHTML='Not a valid Score';
+            }
+
+            else if(scorelist1[0]>scorelist2[0])
+            {
+                document.getElementById('texthere').innerHTML=`${team1} won by ${scorelist1[0]-scorelist2[0]} runs`;
+
+            }
+            else if(scorelist1[0]<scorelist2[0])
+            {
+                document.getElementById('texthere').innerHTML=`${team2} won by ${10-scorelist2[1]} wickets`;
+            }
+            else if(scorelist1[0]==scorelist2[0])
+            {
+                document.getElementById('texthere').innerHTML=`match is draw`;
+            }
+            else{
+                document.getElementById('texthere').innerHTML=`Teamname are same`;  
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    <h1> SCORE BOARED CREATED BY <b><i>NANDINI GONDALIYA</i></b></h1>
+    Team 1:<input type="text" id="teamname1"><br/>
+    Team 2:<input type="text" id="teamname2"><br/>
+    Team 1 Score:<input type="text" id="teamscore1"><br/>
+    Team 2 Score:<input type="text" id="teamscore2"><br/>
+    <p id="texthere"></p>
+    <button onclick="CheckScore()">Check_Winner</button>
+</body>
+</html>
